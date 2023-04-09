@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+    font-family: "Roboto Condensed", sans-serif;
+}
+/* Hero Section */
+.toflexforhero {
+    @apply flex flex-col justify-around mx-10 h-[700px] md:h-[550px] md:flex-row;
+}
+.Myname {
+    @apply text_color relative top-[10%] left-[10%] font-light text-[70px] mt-[28px];
+}
+.yellowLine {
+    @apply w-12 h-1 bg-yellow-400 border-0 rounded my-4 dark:bg-yellow-400 mx-1;
+}
+.socialsection {
+    @apply relative top-[15%] left-[8%];
+}
+.socialmedia {
+    @apply absolute top-[10%] left-[10%];
+}
+
+.socialmedia_logo {
+    @apply mx-2 text-white;
+}
+
+.bigscreennav {
+    @apply relative left-[10%] top-[10%] hidden md:block;
+}
+.navlogo {
+    @apply text-white mr-2 hover:border-2 rounded-full p-3;
+}
+.toflexforabout {
+    @apply flex flex-col justify-around mx-10 h-[700px] md:h-[270px] md:flex-row;
+}
+.titleforabout {
+    @apply text-gray-400 relative px-[50px] md:mt-[55px] mt-[10px];
+}
+.bodyforabout {
+    @apply text-white relative top-[15%] px-[40px];
+}
+.text_color {
+    @apply text-[#E5E8ED];
+}
+
+.about {
+    @apply relative top-[10%] left-[10%];
+}
+
+/* Media Library */
+.medialibraryTitle {
+    @apply text_color font-light text-[30px] text-center pt-[100px];
+}
+.toflexmedialibrary {
+    @apply flex flex-col justify-center items-center mx-10 h-[1000px] lg:h-[550px] lg:flex-row;
+}
+
+.medialibrarysection {
+    @apply static md:px-[60px] px-0;
+}
+.medialibrarycard {
+    @apply max-w-lg rounded overflow-hidden shadow-lg bg-white w-[300px] md:w-full mb-[40px] lg:mb-0;
+}
+.youtube {
+    @apply w-[300px] md:w-[500px];
+}
+.podcast {
+    @apply w-[300px] md:w-[600px];
+}
+
+/* Blog Section */
+
+.blogsectionTitle {
+    @apply text_color font-light text-[30px] text-center pt-10;
+}
+.toflexblogsection {
+    @apply justify-around items-center pb-[60px] pt-[50px];
+}
+.blogsectioncard {
+    @apply max-w-lg rounded overflow-hidden bg-white shadow-lg lg:w-[350px] lg:h-[450px] w-[300px] h-[400px] mt-[20px];
+}
+
+/* Subscribe */
+.subscribecard {
+    @apply bg-gray-700 p-6 rounded;
+}
+.subscribelabel {
+    @apply block text-gray-300 font-bold mb-2;
+}
+.subscribeInput {
+    @apply bg-gray-300 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500;
+}
+/* Login */
+.toflexLogin {
+    @apply bg-black text-white py-8 flex flex-col justify-center h-screen;
+}
+.logincard {
+    @apply bg-gray-700 p-6 rounded;
+}
+.loginemail_pass {
+    @apply bg-gray-300 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500;
+}
+
+/* Sign Up */
+.toflexSignUp {
+    @apply bg-black text-white py-8 flex flex-col justify-center h-screen;
+}
+.signupcard {
+    @apply bg-gray-700 p-6 rounded;
+}
+.signupemail_usename_pass {
+    @apply bg-gray-300 appearance-none border-2 border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500;
+}
