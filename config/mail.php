@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    'default' => 'mailjet',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -44,6 +45,15 @@ return [
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
+        'mailjet' => [
+            'transport' => 'smtp',
+            'host' => env('MAIL_HOST', 'in-v3.mailjet.com'),
+            'port' => env('MAIL_PORT', 587),
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
+        ],
+
 
         'ses' => [
             'transport' => 'ses',
@@ -98,8 +108,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'soungoolwin.dev@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'soungoolwin.net'),
     ],
 
     /*

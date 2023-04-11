@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserRegistered;
+use App\Jobs\SendVerificationMail;
+use App\Mail\AccVerification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -25,13 +30,15 @@ class AuthController extends Controller
             'email.unique' => 'Email is already taken.'
         ]);
         $validated = $validator->validated();
-        $redirect = $request->input('redirect');
+        $user = User::where('email', $validated['email'])->first();
+        if (!is_null($user->email_verification_token)) {
+            return back()->withErrors([
+                'email' => 'Your email address is not verified. Please check your email inbox and verify first.',
+            ]);
+        }
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
-            if (!empty($redirect)) {
-                return redirect()->to($redirect);
-            }
-            return redirect()->intended()->with('success', 'Welcome Back ' . $request->user()->name);
+            return redirect()->intended()->with('success', 'Welcome ' . $request->user()->username);
         }
 
         return back()->withErrors([
@@ -70,10 +77,17 @@ class AuthController extends Controller
                 ->withInput();
         }
         $cleanData = $validator->validated();
-        $user = User::create($cleanData);
-        Auth::login($user);
-        Session::flash('success', 'You have successfully Signed up!');
-        return redirect('/');
+        $cleanData['email_verification_token'] = Str::random(60);
+        $user = User::create([
+            'username' => $cleanData['username'],
+            'email' => $cleanData['email'],
+            'password' => $cleanData['password'],
+            'email_verification_token' => $cleanData['email_verification_token']
+        ]);
+
+        // event(new UserRegistered($user));
+        SendVerificationMail::dispatch($user);
+        return redirect('/login')->with('success', 'Go check your email inbox, verify account and login here');
     }
 
     public function logout(Request $request)
@@ -83,5 +97,20 @@ class AuthController extends Controller
         auth()->logout($user);
         Session::flash('success', 'You have successfully logged out!');
         return redirect('/');
+    }
+
+    public function verifyEmail(Request $request, $token)
+    {
+        $user = User::where('email_verification_token', $token)->firstOrFail();
+
+        $user->email_verified_at = now();
+        $user->email_verification_token = null;
+        $user->save();
+
+        return redirect('/signup/verify');
+    }
+    public function showverifytemplate()
+    {
+        return view('components.emailverifytemplate');
     }
 }
