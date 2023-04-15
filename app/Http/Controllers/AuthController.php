@@ -31,19 +31,26 @@ class AuthController extends Controller
         ]);
         $validated = $validator->validated();
         $user = User::where('email', $validated['email'])->first();
+        // if (!is_null($user->email_verification_token)) {
+        //     return back()->withErrors([
+        //         'email' => 'Your email address is not verified. Please check your email inbox and verify first.',
+        //     ]);
+        // }
+        if (Auth::attempt($validated) && is_null($user->email_verification_token)) {
+            $request->session()->regenerate();
+            return redirect()->intended()->with('success', 'Welcome ' . $request->user()->username);
+        }
+
+        if (!Auth::attempt($validated)) {
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ]);
+        }
         if (!is_null($user->email_verification_token)) {
             return back()->withErrors([
                 'email' => 'Your email address is not verified. Please check your email inbox and verify first.',
             ]);
         }
-        if (Auth::attempt($validated)) {
-            $request->session()->regenerate();
-            return redirect()->intended()->with('success', 'Welcome ' . $request->user()->username);
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
     }
     public function showsignup()
     {
@@ -87,6 +94,7 @@ class AuthController extends Controller
 
         // event(new UserRegistered($user));
         SendVerificationMail::dispatch($user);
+
         return redirect('/login')->with('success', 'Go check your email inbox, verify account and login here');
     }
 

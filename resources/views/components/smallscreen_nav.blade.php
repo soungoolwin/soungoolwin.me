@@ -17,6 +17,19 @@
             <a href="#media-library" class="block px-3 py-2 rounded-md text-center font-medium text-white">Media
                 Library</a>
             <a href="#blogs" class="block px-3 py-2 rounded-md text-center font-medium text-white">Blogs</a>
-            <a href="/login" class="block px-3 py-2 rounded-md text-center font-medium text-white">Login</a>
+            @if (!auth()->user())
+                <a href="/login" class="block px-3 py-2 rounded-md text-center font-medium text-white">Login</a>
+            @endif
+
+            @if (auth()->user())
+                <div class="flex justify-center">
+                    <form method="POST" action="/logout" class="inline-block">
+                        @csrf
+                        <button type="submit" class="navlogo items-center">Logout</button>
+                    </form>
+                </div>
+            @endif
+
+
         </div>
     </div>

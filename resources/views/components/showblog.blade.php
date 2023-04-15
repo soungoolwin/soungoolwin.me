@@ -5,7 +5,7 @@
                 <img src="{{ $blog->image_url }}" alt="" class="mx-auto" />
                 <h1 class="pt-5 text-center text-[30px] my-10">{{ $blog->title }}</h1>
                 <p class="text-[18px]">
-                    {!! $blog->body !!}
+                    {!! str_replace('<img ', '<div class="image-container"><img ', $blog->body) !!}
                 </p>
             </div>
         </div>

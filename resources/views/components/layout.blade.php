@@ -16,6 +16,7 @@
         #container {
             width: 1000px;
             margin: 20px auto;
+
         }
 
         .ck-editor__editable[role="textbox"] {
@@ -28,6 +29,12 @@
             /* block images */
             max-width: 80%;
             margin: 20px auto;
+
+        }
+
+        .image-container {
+            position: relative;
+            left: 50%
         }
     </style>
 
