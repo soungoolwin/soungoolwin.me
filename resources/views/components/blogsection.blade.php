@@ -6,7 +6,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 toflexblogsection justify-items-center">
                 @foreach ($blogs as $blog)
                     <a href="/blogs/{{ $blog->slug }}">
-                        <div class="blogsectioncard mx-auto text-center ">
+                        <div class="blogsectioncard mx-auto text-center py-20">
                             <div class="relative pb-9/16">
                                 <img src="{{ $blog->image_url }}" alt="" width="200" height="200"
                                     class="mx-auto my-5" />
