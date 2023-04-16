@@ -82,7 +82,7 @@ html {
     @apply justify-around items-center pb-[60px] pt-[50px];
 }
 .blogsectioncard {
-    @apply max-w-lg rounded overflow-hidden bg-white shadow-lg lg:w-[350px] h-auto w-[300px]  mt-[20px];
+    @apply max-w-lg rounded overflow-hidden bg-white shadow-lg lg:w-[350px] h-[550px] w-[300px]  mt-[20px];
 }
 
 /* Subscribe */
