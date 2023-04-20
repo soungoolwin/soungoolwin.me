@@ -39,10 +39,18 @@
             left: 50%
         }
     </style>
-
+    <script>
+        window.addEventListener("load", function() {
+            var loading = document.getElementsByTagName("iframe")[0];
+            loading.style.display = "none";
+        });
+    </script>
 </head>
 
 <body>
+    <iframe src="/images/loading.html" style="border:none; width:100%; height:100vh;"></iframe>
+
+
 
     @if (session('success'))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">

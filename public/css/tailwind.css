@@ -591,11 +591,6 @@ video {
   margin-bottom: 0.75rem;
 }
 
-.my-5{
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-}
-
 .mb-2{
   margin-bottom: 0.5rem;
 }
@@ -692,6 +687,10 @@ video {
   width: 100%;
 }
 
+.w-screen{
+  width: 100vw;
+}
+
 .min-w-full{
   min-width: 100%;
 }
@@ -702,6 +701,10 @@ video {
 
 .max-w-md{
   max-width: 28rem;
+}
+
+.transform{
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .cursor-default{
@@ -903,6 +906,10 @@ video {
 .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.pb-10{
+  padding-bottom: 2.5rem;
 }
 
 .pb-7{
@@ -1353,7 +1360,7 @@ html {
 
 .blogsectioncard{
   margin-top: 20px;
-  height: 500px;
+  height: 550px;
   width: 300px;
   max-width: 32rem;
   overflow: hidden;
