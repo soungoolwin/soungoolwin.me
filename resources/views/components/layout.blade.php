@@ -39,6 +39,7 @@
             left: 50%
         }
     </style>
+    {{-- for loading annimation --}}
     <script>
         window.addEventListener("load", function() {
             var loading = document.getElementsByTagName("iframe")[0];
@@ -48,8 +49,9 @@
 </head>
 
 <body>
+    {{-- for loading annimation --}}
     <iframe src="/images/loading.html" style="border:none; width:100%; height:100vh;"></iframe>
-
+    {{-- for loading annimation --}}
 
 
     @if (session('success'))

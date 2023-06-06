@@ -12,9 +12,15 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Services\DiscordNotificationService;
 
 class AuthController extends Controller
 {
+    protected $discordNotificationService;
+    public function __construct(DiscordNotificationService $discordNotificationService)
+    {
+        $this->discordNotificationService = $discordNotificationService;
+    }
     public function showlogin()
     {
         return view('components.login');
@@ -38,6 +44,8 @@ class AuthController extends Controller
         // }
         if (Auth::attempt($validated) && is_null($user->email_verification_token)) {
             $request->session()->regenerate();
+            $this->discordNotificationService->sendUserSignupNotification($validated);
+
             return redirect()->intended()->with('success', 'Welcome ' . $request->user()->username);
         }
 
