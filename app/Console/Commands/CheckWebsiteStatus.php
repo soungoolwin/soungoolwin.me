@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Blog;
 use Illuminate\Console\Command;
 use App\Services\DiscordNotificationService;
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
@@ -41,7 +42,7 @@ class CheckWebsiteStatus extends Command
         $urlsToCheck = [
 
             'https://soungoolwin.me/',
-            'https://soungoolwin.me/login/',
+            'https://soungoolwin.me/login/sss',
             'https://soungoolwin.me/signup/',
             'https://soungoolwin.me/signup/verify',
             'https://soungoolwin.me/dashboard/blogs/create',
@@ -60,13 +61,8 @@ class CheckWebsiteStatus extends Command
                     $this->error("URL: $url - Status: $statusCode");
                     $this->discordNotificationService->sendErrorNotification("Website Have an errors");
                 }
-            } catch (ClientException $exception) {
-                $response = $exception->getResponse();
-                $statusCode = $response->getStatusCode();
-                $this->error("URL: $url - Status: $statusCode");
-
-                // Handle the 404 error here, such as sending a Discord notification
-                $this->discordNotificationService->sendErrorNotification("URL: $url - Status: $statusCode");
+            } catch (\Exception $e) {
+                $this->discordNotificationService->sendErrorNotification("URL: $url - Error: " . $e->getMessage());
             }
         }
 
