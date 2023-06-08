@@ -7,6 +7,7 @@ use Illuminate\Console\Command;
 use App\Services\DiscordNotificationService;
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Promise;
 use GuzzleHttp\Exception\ClientException;
 
 class CheckWebsiteStatus extends Command
@@ -50,21 +51,29 @@ class CheckWebsiteStatus extends Command
         ];
         $client = new Client();
 
-        foreach ($urlsToCheck as $url) {
-            try {
-                $response = $client->get($url);
-                $statusCode = $response->getStatusCode();
+        $promises = [];
 
-                if ($statusCode === 200) {
-                    $this->info("URL: $url - Status: $statusCode");
-                } else {
-                    $this->error("URL: $url - Status: $statusCode");
-                    $this->discordNotificationService->sendErrorNotification("Website Have an errors");
-                }
-            } catch (\Exception $e) {
-                $this->discordNotificationService->sendErrorNotification("URL: $url - Error: " . $e->getMessage());
-            }
+        foreach ($urlsToCheck as $url) {
+            $promise = $client->getAsync($url)
+                ->then(function ($response) use ($url) {
+                    $statusCode = $response->getStatusCode();
+
+                    if ($statusCode === 200) {
+                        $this->info("URL: $url - Status: $statusCode");
+                    } else {
+                        $this->error("URL: $url - Status: $statusCode");
+                        $this->discordNotificationService->sendErrorNotification("Website has errors");
+                    }
+                })
+                ->otherwise(function ($exception) use ($url) {
+                    $this->discordNotificationService->sendErrorNotification("URL: $url - Error: " . $exception->getMessage());
+                });
+
+            $promises[] = $promise;
         }
+
+        // Wait for all promises to complete
+        Promise\Utils::all($promises)->wait();
 
         $this->info('Website status check completed.');
     }

@@ -32,7 +32,7 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::middleware(['is_admin'])->group(function () {
     Route::get('/dashboard/blogs/create', [DashboardController::class, 'createblog']);
     Route::post('/dashboard/blogs/create', [DashboardController::class, 'storeblog']);
-    Route::get('/dashboard/blogs/showall', [DashboardController::class, 'showblogstable']);
+    Route::get(' ', [DashboardController::class, 'showblogstable']);
     Route::delete('/dashboard/blogs/{blog}', [DashboardController::class, 'destroy']);
     Route::get('/dashboard/blogs/{blog}/edit', [DashboardController::class, 'editblog']);
     Route::patch('/dashboard/blogs/{blog}/edit', [DashboardController::class, 'updateblog']);
