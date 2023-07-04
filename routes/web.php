@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MainController::class, 'index']);
+Route::get('/{vue_capture?}', function () {
+    return view('main');
+})->where('vue_capture', '[\/\w\.-]*');
 Route::get('/blogs/{blog:slug}', [MainController::class, 'show']);
 Route::get('/login', [AuthController::class, 'showlogin']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -32,7 +34,7 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::middleware(['is_admin'])->group(function () {
     Route::get('/dashboard/blogs/create', [DashboardController::class, 'createblog']);
     Route::post('/dashboard/blogs/create', [DashboardController::class, 'storeblog']);
-    Route::get(' ', [DashboardController::class, 'showblogstable']);
+    Route::get('/dashboard/blogs', [DashboardController::class, 'showblogstable']);
     Route::delete('/dashboard/blogs/{blog}', [DashboardController::class, 'destroy']);
     Route::get('/dashboard/blogs/{blog}/edit', [DashboardController::class, 'editblog']);
     Route::patch('/dashboard/blogs/{blog}/edit', [DashboardController::class, 'updateblog']);

@@ -19,6 +19,7 @@ class BlogFactory extends Factory
         return [
             'slug' => fake()->unique()->slug(),
             'title' => fake()->title(),
+            'image_url' => 'https://blog.hubspot.com/hubfs/Basic%20URL%20Parts_72-01%20(1).jpg',
             'intro' => fake()->text(30),
             'body' => fake()->text(200),
 
