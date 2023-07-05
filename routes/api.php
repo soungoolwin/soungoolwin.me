@@ -18,6 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< HEAD
+=======
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+>>>>>>> parent of 73f405a (update cors setting)
 Route::get('blogs', [BlogController::class, 'index']);
 Route::get('/blogs/{blog:slug}', [BlogController::class, 'show']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
