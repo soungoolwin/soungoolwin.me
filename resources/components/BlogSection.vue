@@ -75,7 +75,7 @@ export default {
         let fetchBlogs = async () => {
             try {
                 const response = await fetch(
-                    "http://127.0.0.1:8000/api/blogs?page=" + page.value
+                    "https://soungoolwin.me/api/blogs?page=" + page.value
                 );
 
                 const data = await response.json();
