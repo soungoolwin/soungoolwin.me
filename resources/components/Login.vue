@@ -93,7 +93,7 @@ export default {
         let submitForm = async () => {
             try {
                 await axios.get("/sanctum/csrf-cookie");
-                const response = await axios.post("/login", {
+                const response = await axios.post("/api/login", {
                     email: email.value,
                     password: password.value,
                 });
