@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: "https://soungoolwin.me/", // Replace with your API base URL
+    baseURL: "https://soungoolwin.me/api", // Replace with your API base URL
     withCredentials: true,
     headers: {
         "X-Requested-With": "XMLHttpRequest",
