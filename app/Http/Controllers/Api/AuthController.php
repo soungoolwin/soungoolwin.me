@@ -33,6 +33,7 @@ class AuthController extends Controller
         }
         $validated = $validator->validated();
 
+
         $user = User::where('email', $validated['email'])->first();
 
 
