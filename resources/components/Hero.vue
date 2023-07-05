@@ -119,7 +119,7 @@ export default {
 
         const checkLoginStatus = async () => {
             try {
-                const response = await axios.get("/api/user");
+                const response = await axios.get("user");
 
                 if (response.status === 200) {
                     isLoggedIn.value = true;
