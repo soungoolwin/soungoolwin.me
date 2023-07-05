@@ -4,11 +4,13 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\SendVerificationMail;
+use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Services\DiscordNotificationService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class AuthController extends Controller
@@ -122,6 +124,7 @@ class AuthController extends Controller
 
     public function verifyEmail(Request $request, $token)
     {
+        // $user = DB::table('users')->where('email_verification_token', $token)->first();
         $user = User::where('email_verification_token', $token)->firstOrFail();
 
         $user->email_verified_at = now();
