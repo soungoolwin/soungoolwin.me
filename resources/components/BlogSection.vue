@@ -65,6 +65,7 @@
 
 <script>
 import { onMounted, ref } from "vue";
+import axios from "axios";
 
 export default {
     setup() {
@@ -74,9 +75,7 @@ export default {
 
         let fetchBlogs = async () => {
             try {
-                const response = await fetch(
-                    "https://soungoolwin.me/api/blogs?page=" + page.value
-                );
+                const response = await axios.get("blogs?page=" + page.value);
 
                 const data = await response.json();
                 blogs.value = data.data;
