@@ -37,14 +37,13 @@
                         <div class="relative md:top-[200px]">
                             <h1 class="font-light text-white text-[22px]">
                                 ICT Student at Rangsit University and <br />
-                                Junior Backend Developer
+                                Laravel, Vue.js Developer
                             </h1>
                             <p class="my-3 text-[12px] text-gray-400">
-                                A Programmer who enthusiast backend devloping, software
-                                engineering, and software architech.
+                                A Programmer who is eager to learn and innovate new things.
                             </p>
                             <h2 class="underline mt-8 text-yellow-400">
-                                <a href="">My CV</a>
+                                <a href="https://tinyurl.com/2kcrtm9z">My CV</a>
                             </h2>
                         </div>
                     </section>
@@ -58,14 +57,13 @@
                         <p class="bodyforabout">
                             Tech and tech related enthusiast since chilhood.
                             Computer Science student at Computer University Mandalay(2019-2020).
-                            Now studying ICT at Rangist University.
+                            Now studying ICT at Rangist University and running "Technophilia Lab" own startup team.
                         </p>
                     </section>
                     <section class="static">
                         <h3 class="titleforabout">Skills</h3>
                         <p class="bodyforabout">
-                            As I'm a web developer specialized in backend, I can develope backend project
-                            with PHP, laravel and vuejs.
+                            I can develope Vue.js, Laravel SPA application with great performance and innovations.
                         </p>
                     </section>
                 </div>
